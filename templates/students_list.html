@@ -1,5 +1,44 @@
- {% extends 'base.html' %}
- {% block title %}{% endblock title %}
+{% extends 'base.html' %}
+{% block title %}Students List{% endblock title %}
 
-{% block body %} {% endblock body %}
+{% block body %}
+<div class="table-responsive">
+  <table class="table table-bordered table-primary">
+    <thead class="bg-info">
+      <tr>
 
+        <th scope="col">S/N</th>
+
+        <th scope="col">Status</th>
+
+        <th scope="col">Fullname</th>
+        <th scope="col">Email</th>
+        <th scope"col">Student ID</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Address</th>
+        <th scope="col">Admission Date</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for students in students %}
+      <tr>
+        <td>{{forloop.counter }}</td>
+        <td>{{ students.status }}</td>
+        <td>{{ students.name }}</td>
+        <td>{{ students.email }}</td>
+        <td>{{ students.id }}</td>
+        <td>{{ students.gender }}</td>
+        <td>{{ students.phone }}</td>
+        <td> {{ students.address }}</td>
+        <td> {{ students.date }}</td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+  <div class="container">
+   <button type="button" class="btn btn-info">Update</button>
+</div>
+</div>
+{% endblock body %}
