@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}Teachers list{% endblock title %}
+{% block body %}
+<!--------ALert---------------->
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show my-0" role="alert">
+ <strong > {{ message }} </strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+{% endif %}
+ <!----------------Form------------------------>
+<div class="container-fluid">
+<h3>Display Teachers</h3>
+    <table class=" table table-bordered table-primary  container mt-5">
+        <thead class="thead-info">
+        <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Name</th>
+            <th scope="col">email</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Address</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Subject</th>
+            {% if request.user.is_staff %}
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+            {% endif %}
+            </thead>
+        </tr>
+
+      {% for teachers in teachers_list %}
+        <tr>
+            <td><img class="img-fluid " src="{{ teachers.image_URL }}" alt="" height="100" width="200"></td> 
+            <td>{{ teachers.name }}</td>
+            <td>{{ teachers.email }}</td>
+            <td>{{ teachers.gender }}</td>
+            <td> {{ teachers.phone }}</td>
+            <td>{{ teachers.address }}</td>
+            <td> {{ teachers.salary }}</td>
+            <td>{{ teachers.subject }}</td>
+            {% if request.user.is_staff %}
+            <td><a class="btn btn-primary" href="{% url 'update_teachers' teachers.pk %}">Update</a></td>
+            <td><a class="btn btn-danger" href="{% url 'delete_teachers' teachers.pk %}">Delete</a></td>
+            {% endif %}
+        </tr>
+      {% endfor %}
+    </table>
+</div>
+    <!----------------------- End Of Form--------------------------- -->
+
+
+{% endblock body %}

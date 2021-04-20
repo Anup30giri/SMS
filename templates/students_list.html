@@ -18,11 +18,15 @@
         <th scope="col">Phone</th>
         <th scope="col">Address</th>
         <th scope="col">Admission Date</th>
+        {% if request.user.is_staff %}
+        <th scope="col">Action</th>
+        {% endif %}
+
       </tr>
     </thead>
     <tbody>
     {% for students in students %}
-      <tr>
+      <tr class="clickable-row odd" data-href="update_student/<int:id>"role="row"style="cursor:pointer">
         <td>{{forloop.counter }}</td>
         <td>{{ students.status }}</td>
         <td>{{ students.name }}</td>
@@ -32,13 +36,16 @@
         <td>{{ students.phone }}</td>
         <td> {{ students.address }}</td>
         <td> {{ students.date }}</td>
+        {% if request.user.is_staff %}
+        <td><a href="/update_student/{{students.id}}" class="btn btn-info btn-sm mx-2 border border-dark">Update</a>
+          <a href="/deleteStudent/{{students.id}}"class="btn btn-info btn-sm border border-dark"onclick="return confirm('Do you want to delete student')">Delete</a></td>
+          {% endif %}
       </tr>
       {% endfor %}
 
     </tbody>
   </table>
-  <div class="container">
-   <button type="button" class="btn btn-info">Update</button>
-</div>
+  
+
 </div>
 {% endblock body %}

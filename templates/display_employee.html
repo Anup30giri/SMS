@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Employee list{% endblock title %}
+{% block body %}
+
+ <!----------------Form------------------------>
+<div class="container-fluid">
+<h3>Display Employee</h3>
+    <table class="table table-striped container table-bordered table-primary mt-5">
+        <tr>
+        <th>ID</th>
+          
+            <th scope="col">Name</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Address</th>
+            {% if request.user.is_staff %}
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+            {% endif %}
+        </tr>
+
+      {% for employee in employee_list %}
+        <tr>
+            <td>{{ employee.id }}</td>
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.gender }}</td>
+            <td> {{ employee.phone }}</td>
+            <td>{{ employee.address }}</td>
+            {% if request.user.is_staff %}
+            <td><a class="btn btn-primary" href="{% url 'update_employee' employee.pk %}">Update</a></td>
+            <td><a class="btn btn-danger" href="{% url 'delete_employee' employee.pk %}">Delete</a></td> 
+            {% endif %}
+        </tr>
+      {% endfor %}
+    </table>
+</div>
+    <!----------------------- End Of Form--------------------------- -->
+
+
+{% endblock body %}

@@ -27,7 +27,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -37,10 +37,10 @@
                     </a>
                     <div class="dropdown-menu bg-info " aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/students_list">Students List</a>
+                        {% if request.user.is_staff %}
                         <a class="dropdown-item" href="#">Attendance</a>
                         <a class="dropdown-item" href="/registration">Registration</a>
-                        <a class="dropdown-item" href="/update_student">Update Students</a>
-
+                          {% endif %}
                 </li>
 
                 <li class="nav-item dropdown">
@@ -49,8 +49,10 @@
                         Teachers
                     </a>
                     <div class="dropdown-menu bg-info " aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/teachers_list">Teacher list</a>
+                        <a class="dropdown-item" href="/teachers">Teacher list</a>
+                        {% if request.user.is_staff %}
                         <a class="dropdown-item" href="/add_teacher">AddTeachers</a>
+                        {% endif %}
                 </li>
 
                 <li class="nav-item dropdown">
@@ -59,20 +61,14 @@
                         Employee
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/employee_list">Employee List</a>
-                        <a class="dropdown-item" href="/employee_reg">  Employee Registration</a>
+                        <a class="dropdown-item" href="/display_employee">Employee List</a>
+                        {% if request.user.is_staff %}
+                        <a class="dropdown-item" href="/add_employee">  Employee Registration</a>
+                        {% endif %}
                 </li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Results
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Create Results</a>
-                        <a class="dropdown-item" href="#">Update Results</a>
-                        <a class="dropdown-item" href="#">View Results</a>
-                </li>
+            
+               
             </ul>
             <a class="btn btn-dark mx-4 border-info" id="logout" href="/logout" role="button">Log Out</a>
 

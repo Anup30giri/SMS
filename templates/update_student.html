@@ -1,18 +1,30 @@
 {% extends 'base.html' %}
 {% block title %}Update Students{% endblock title %}
 {% block body %} 
+<!--------ALert---------------->
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show my-0" role="alert">
+ <strong > {{ message }} </strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+{% endif %}
  <!----------------------- End Of Form--------------------------- -->
 <div class="container-fluid">
-<form class="my-4 ml-3" method="POST" action="/update_student " >
+<form class="my-4 ml-3" method="POST"action="/update_student/{{students.id}}" >
 {% csrf_token %}          
         <div class="form-group">
             <label for="exampleFormControlSelect1">Current status</label>
             <select class="form-control" id="status" name="status">
-            {% if registration.status == "Active" %}
+            {% if students.status == "Active" %}
             <option selected>Active</option>
             <option>Inactive</option>
             {% endif %}
-            {% if registration.status == "Inactive" %}
+            {% if students.status == "Inactive" %}
             <option >Active</option>
             <option selected>Inactive</option>
             {% endif %}
@@ -22,31 +34,33 @@
 
         <div class="form-group ">
             <label for="name">Fullname</label>
-            <input type="text" value="{{ registration.name }}" class="form-control" id="name" name="name" placeholder="Enter ur fullname">
+            <input type="text" value="{{students.name}}" class="form-control" id="name" name="name" placeholder="Enter ur fullname">
         </div>
 
           <div class="form-group">
             <label for="exampleFormControlInput1">Email address</label>
-            <input type="email" class="form-control" id="email"  name="email" placeholder="Enter ur Email">
+            <input type="email"value="{{students.email}}" class="form-control" id="email"  name="email" placeholder="Enter ur Email">
           </div>
+
+         
 
           
         <div class="form-group">
             <label for="exampleFormControlSelect1">Gender</label>
             <select class="form-control" id="gender" name="gender">
-            {% if registration.gender == "Male" %}
+            {% if students.gender == "Male" %}
             <option selected>Male</option>
             <option>Female</option>
             <option>Other</option>
             {% endif %}
 
-            {% if registration.gender == "Female" %}
+            {% if students.gender == "Female" %}
             <option>Male</option>
             <option selected>Female</option>
             <option>Other</option>
             {% endif %}
 
-            {% if registration.gender == "Other" %}
+            {% if students.gender == "Other" %}
             <option>Male</option>
             <option>Female</option>
             <option selected>Other</option>
@@ -58,29 +72,19 @@
 
           <div class="form-group">
             <label for="exampleFormControlInput1">Phone Number</label>
-            <input type="phone" class="form-control" id="phone" name="phone" placeholder="Enter ur phone number">
+            <input type="phone" value="{{students.phone}}" class="form-control" id="phone" name="phone" placeholder="Enter ur phone number">
           </div>
 
            <div class="form-group">
             <label for="exampleFormControlInput1">Address</label>
-            <input type="phone" class="form-control" id="address" name="address" placeholder="Enter ur address">
+            <input type="phone" value="{{students.address}}" class="form-control" id="address" name="address" placeholder="Enter ur address">
           </div>
-          <!-- <div class="form-group">
-            <label for="exampleFormControlInput1"> Birth Date</label>
-            <input type="date" class="form-control" id="bdate" name="bdate">
-          </div> -->
+         
 
-           <div class="form-group">
+           <!-- <div class="form-group">
             <label for="exampleFormControlInput1"> Admission Date</label>
-            <input type="date" class="form-control" id="date" name="date">
-          </div>
-
-  
-          <div class="form-group">
-            <label for="exampleFormControlTextarea1">Description</label>
-            <textarea class="form-control" id="desc" rows="3" name="desc"></textarea>
-          </div>
-
+            <input type="date" value="{{students.date}}" class="form-control" id="date" name="date">
+          </div> -->
           <button class="btn btn-primary" type="submit">Register</button>
         </form>
         </div>

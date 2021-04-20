@@ -1,15 +1,14 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
-{% block title %}Add Teacher{% endblock title %}
+{% block title %}Add Employee{% endblock title %}
 {% block body %}
-
  <!----------------Form------------------------>
 <div class="container-fluid">
-<h3>Add Teacher</h3>
-<form class="my-4 ml-3" method="POST" action="/add_teacher"enctype="multipart/form-data" >
+<h3>Add Employee</h3>
+<form class="my-4 ml-3" method="POST" action="/add_employee"enctype="multipart/form-data" >
 {% csrf_token %}          
-{{ form|crispy}}
+        {{ form|crispy}}
 
 
           <button class="btn btn-primary" type="submit" value="submit">Register</button>

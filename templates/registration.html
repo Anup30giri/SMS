@@ -17,10 +17,7 @@
 
 <form class="my-4 ml-3" method="post" action="/registration" >
 {% csrf_token %}          
-
-
-
-        <div class="form-group">
+   <div class="form-group">
             <label for="exampleFormControlSelect1">Current status</label>
             <select class="form-control" id="status" name="status">
             <option>Active</option>
@@ -64,11 +61,7 @@
             <label for="exampleFormControlInput1">Address</label>
             <input type="phone" class="form-control" id="address" name="address" placeholder="Enter ur address">
           </div>
-          <!-- <div class="form-group">
-            <label for="exampleFormControlInput1"> Birth Date</label>
-            <input type="date" class="form-control" id="bdate" name="bdate">
-          </div> -->
-
+     
            <div class="form-group">
             <label for="exampleFormControlInput1"> Admission Date</label>
             <input type="date" class="form-control" id="date" name="date">
